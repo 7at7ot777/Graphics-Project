@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Graphics 1st try/1.0.0": {
+        "runtime": {
+          "Graphics 1st try.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Graphics 1st try/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
