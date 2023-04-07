@@ -11,7 +11,7 @@ namespace Graphics_1st_try
             var draw = panel1.CreateGraphics();
             var aBrushers = Brushes.Green;
             //xc yc is the origin
-            draw.FillRectangle(aBrushers, xc + x, yc + y, 2,2);
+            draw.FillRectangle(aBrushers, xc + x, yc + y, 2, 2);
             draw.FillRectangle(aBrushers, xc - x, yc + y, 2, 2);
             draw.FillRectangle(aBrushers, xc + x, yc - y, 2, 2);
             draw.FillRectangle(aBrushers, xc - x, yc - y, 2, 2);
@@ -43,7 +43,7 @@ namespace Graphics_1st_try
                 else
                     d = d + 4 * x + 6;
                 drawCircle(xc, yc, x, y);
-               
+
             }
         }
 
@@ -84,37 +84,37 @@ namespace Graphics_1st_try
                     y++;
                     p += twoDyMinusDx;
                 }
-                draw.FillRectangle(aBrushers, round(x), round(y),4, 4);
+                draw.FillRectangle(aBrushers, round(x), round(y), 4, 4);
             }
         }
         //DDA Algorithm   
         int round(float a) { return Convert.ToInt32(a + 0.5); }
-     void lineDDA(int x0, int y0, int xEnd, int yEnd)
+        void lineDDA(int x0, int y0, int xEnd, int yEnd)
         {
             var draw = panel1.CreateGraphics();
             var aBrushers = Brushes.Black;
 
 
             int dx = xEnd - x0, dy = yEnd - y0, steps, k;
-        float xIncrement, yIncrement, x = x0, y = y0;
+            float xIncrement, yIncrement, x = x0, y = y0;
 
-        if (Math.Abs(dx) > Math.Abs(dy))
-            steps = Math.Abs(dx);
-        else
-            steps = Math.Abs(dy);
-        xIncrement = (float)(dx) / (float)(steps);
-        yIncrement = (float)(dy) / (float)(steps);
+            if (Math.Abs(dx) > Math.Abs(dy))
+                steps = Math.Abs(dx);
+            else
+                steps = Math.Abs(dy);
+            xIncrement = (float)(dx) / (float)(steps);
+            yIncrement = (float)(dy) / (float)(steps);
 
-        draw.FillRectangle(aBrushers,round(x), round(y),2,2);
-        for (k = 0; k < steps; k++)
-        {
-            x += xIncrement;
-            y += yIncrement;
+            draw.FillRectangle(aBrushers, round(x), round(y), 2, 2);
+            for (k = 0; k < steps; k++)
+            {
+                x += xIncrement;
+                y += yIncrement;
                 draw.FillRectangle(aBrushers, round(x), round(y), 2, 2);
             }
-    }
-   
-    public Form1()
+        }
+
+        public Form1()
         {
             InitializeComponent();
         }
@@ -126,13 +126,13 @@ namespace Graphics_1st_try
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var x0 = Convert.ToInt32(X0.Text) ;
+            var x0 = Convert.ToInt32(X0.Text);
             var xEnd = Convert.ToInt32(XEnd.Text);
             var y0 = Convert.ToInt32(Y0.Text);
             var yEnd = Convert.ToInt32(YEnd.Text);
 
             lineDDA(x0, y0, xEnd, yEnd);
-            
+
 
 
         }
@@ -183,6 +183,25 @@ namespace Graphics_1st_try
         private void label8_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DrawElipse_Click(object sender, EventArgs e)
+        {
+            var xc = Convert.ToInt32(ElipseXc.Text);
+            var yc = Convert.ToInt32(ElipseYc.Text);
+            var rx = Convert.ToInt32(RadiusX.Text);
+            var ry = Convert.ToInt32(RadiusX.Text);
+            
         }
     }
 }
