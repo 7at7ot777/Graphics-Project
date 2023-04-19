@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Drawing;
 
 namespace Graphics_1st_try
@@ -24,7 +25,9 @@ namespace Graphics_1st_try
         {
             int x = 0, y = r;
             int d = 3 - 2 * r;
+            // drawCircle(xc + (panel1.Width / 2), (panel1.Height / 2) - yc, x + (panel1.Width / 2), (panel1.Height / 2) - y);
             drawCircle(xc, yc, x, y);
+
             while (y >= x)
             {
                 // for each pixel we will
@@ -42,7 +45,9 @@ namespace Graphics_1st_try
                 }
                 else
                     d = d + 4 * x + 6;
-                drawCircle(xc, yc, x, y);
+                   drawCircle(xc, yc, x, y);
+            //    drawCircle(xc + (panel1.Width / 2), (panel1.Height / 2) - yc, x + (panel1.Width / 2), (panel1.Height / 2) - y);
+
 
             }
         }
@@ -72,7 +77,7 @@ namespace Graphics_1st_try
             {
                 x = x0; y = y0;
             }
-            draw.FillRectangle(aBrushers, round(x), round(y), 4, 4);
+            draw.FillRectangle(aBrushers, round(x) + (panel1.Width / 2), (panel1.Height / 2) - round(y), 4, 4);
 
             while (x < xEnd)
             {
@@ -84,12 +89,12 @@ namespace Graphics_1st_try
                     y++;
                     p += twoDyMinusDx;
                 }
-                draw.FillRectangle(aBrushers, round(x), round(y), 4, 4);
+                draw.FillRectangle(aBrushers, round(x) + (panel1.Width / 2), (panel1.Height / 2) - round(y), 4, 4);
             }
         }
         //DDA Algorithm   
         int round(float a) { return Convert.ToInt32(a + 0.5); }
-        int round(double a) { return Convert.ToInt32(a + 0.5); }
+        //int round(double a) { return Convert.ToInt32(a + 0.5); }
         void lineDDA(int x0, int y0, int xEnd, int yEnd)
         {
             var draw = panel1.CreateGraphics();
@@ -106,12 +111,12 @@ namespace Graphics_1st_try
             xIncrement = (float)(dx) / (float)(steps);
             yIncrement = (float)(dy) / (float)(steps);
 
-            draw.FillRectangle(aBrushers, round(x), round(y), 2, 2);
+            draw.FillRectangle(aBrushers, round(x) + (panel1.Width / 2), (panel1.Height / 2) - round(y), 2, 2);
             for (k = 0; k < steps; k++)
             {
                 x += xIncrement;
                 y += yIncrement;
-                draw.FillRectangle(aBrushers, round(x), round(y), 2, 2);
+                draw.FillRectangle(aBrushers, round(x) + (panel1.Width / 2), (panel1.Height / 2) - round(y), 2, 2);
             }
         }
 
@@ -165,7 +170,7 @@ namespace Graphics_1st_try
             var y0 = Convert.ToInt32(Y0.Text);
             var yEnd = Convert.ToInt32(YEnd.Text);
 
-            lineBres(x0, y0, xEnd, yEnd);
+            lineBres(x0, y0, xEnd,  yEnd);
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -178,7 +183,7 @@ namespace Graphics_1st_try
             var xc = Convert.ToInt32(Xc.Text);
             var yc = Convert.ToInt32(Yc.Text);
             var rad = Convert.ToInt32(radius.Text);
-            circleBres(xc, yc, rad);
+            circleBres(xc + (panel1.Width / 2), (panel1.Height / 2) - yc, rad);
         }
 
         private void label8_Click(object sender, EventArgs e)
@@ -204,10 +209,87 @@ namespace Graphics_1st_try
             var ry = Convert.ToInt32(RadiusX.Text);
 
             BersenhamElipse(xc, yc, rx, ry);
-            
+
+        }
+        private void EllipsPoint(int xc, int yc, int x, int y)
+        {
+            var aBrush = Brushes.Black;
+            var g = panel1.CreateGraphics();
+            g.FillRectangle(aBrush, (xc + x), (yc + y), 1, 1);
+            g.FillRectangle(aBrush, (xc - x), (yc + y), 1, 1);
+            g.FillRectangle(aBrush, (xc + x), (yc - y), 1, 1);
+            g.FillRectangle(aBrush, (xc - x), (yc - y), 1, 1);
         }
 
-        void BersenhamElipse(int xc , int yc, int rx, int ry)
+        private void BersenhamElipse(int xc, int yc, int rx, int ry)
+        {
+            double x = 0;
+            double y = ry;
+            double pk = (ry * ry) - (rx * rx * ry) + (0.25 * rx * rx);
+            EllipsPoint(xc, yc, (int)x, (int)y);
+            Debug.WriteLine("first one");
+            Debug.WriteLine("x=" + x + "\t" + "y=" + y + "\t" + "pk=" + pk);
+
+            while ((ry * ry * x) < (rx * rx * y))
+            {
+                x++;
+                if (pk < 0)
+                {
+                    pk += (2 * ry * ry * x) + (ry * ry);
+                }
+                else
+                {
+                    y--;
+                    pk += (2 * ry * ry * x) + (ry * ry) - (2 * rx * rx * y);
+                }
+                EllipsPoint(xc, yc, (int)x, (int)y);
+                Debug.WriteLine("x=" + x + "\t" + "y=" + y + "\t" + "pk=" + pk);
+            }
+            Debug.WriteLine("second one");
+            pk = (((ry * ry) * ((x + 0.5) * (x + 0.5))) + ((rx * rx) * ((y - 1) * (y - 1))) - (rx * rx * ry * ry));
+            Debug.WriteLine("x=" + x + "\t" + "y=" + y + "\t" + "pk=" + pk);
+            while (y > 0)
+            {
+                y--;
+                if (pk > 0)
+                {
+                    pk += (rx * rx) - (2 * rx * rx * y);
+                }
+                else
+                {
+                    x++;
+                    pk += (rx * rx) - (2 * rx * rx * y) + (2 * ry * ry * x);
+                }
+                EllipsPoint(xc, yc, (int)x, (int)y);
+                Debug.WriteLine("x=" + x + "\t" + "y=" + y + "\t" + "pk=" + pk);
+            }
+        }
+
+        private void drawAxis()
+        {
+            var aBrush = Brushes.Black;
+            var g = panel1.CreateGraphics();
+            //X axis
+            for (int i = 0; i < panel1.Width; i++)
+            {
+                g.FillRectangle(aBrush, i , panel1.Height/2 , 1, 1);
+
+            }
+            for (int i = 0; i < panel1.Height; i++)
+            {
+                g.FillRectangle(aBrush, panel1.Width / 2, i, 1, 1);
+
+            }
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            panel1.Refresh();
+            drawAxis();
+        }
+
+
+        /*void BersenhamElipse(int xc , int yc, int rx, int ry)
         {
             var draw = panel1.CreateGraphics();
            
@@ -287,6 +369,6 @@ namespace Graphics_1st_try
                     }
                 
             }
-        }
+        }*/
     }
 }

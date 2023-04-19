@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+           
             DDA = new Button();
             X0 = new TextBox();
             label1 = new Label();
@@ -57,6 +58,8 @@
             RadiusX = new TextBox();
             RadiusY = new TextBox();
             DrawElipse = new Button();
+            label14 = new Label();
+            button1 = new Button();
             SuspendLayout();
             // 
             // DDA
@@ -321,12 +324,33 @@
             DrawElipse.UseVisualStyleBackColor = true;
             DrawElipse.Click += DrawElipse_Click;
             // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(4, 484);
+            label14.Name = "label14";
+            label14.Size = new Size(137, 15);
+            label14.TabIndex = 29;
+            label14.Text = "__________________________";
+            // 
+            // button1
+            // 
+            button1.Location = new Point(11, 509);
+            button1.Name = "button1";
+            button1.Size = new Size(117, 23);
+            button1.TabIndex = 30;
+            button1.Text = "Clear Window";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_2;
+            // 
             // Form1
             // 
             AccessibleName = "Draw DDA";
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1265, 532);
+            ClientSize = new Size(1265, 597);
+            Controls.Add(button1);
+            Controls.Add(label14);
             Controls.Add(DrawElipse);
             Controls.Add(RadiusY);
             Controls.Add(RadiusX);
@@ -361,6 +385,7 @@
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
+           
         }
 
         #endregion
@@ -394,5 +419,9 @@
         private TextBox RadiusX;
         private TextBox RadiusY;
         private Button DrawElipse;
+        private Label label14;
+        private Button button1;
+        
+
     }
 }

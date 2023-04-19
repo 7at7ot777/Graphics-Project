@@ -12,6 +12,8 @@ namespace Graphics_1st_try
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
+            
+
         }
     }
 }
