@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-           
             DDA = new Button();
             X0 = new TextBox();
             label1 = new Label();
@@ -238,7 +237,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(5, 349);
+            label9.Location = new Point(7, 408);
             label9.Name = "label9";
             label9.Size = new Size(52, 15);
             label9.TabIndex = 19;
@@ -257,7 +256,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(6, 376);
+            label11.Location = new Point(7, 435);
             label11.Name = "label11";
             label11.Size = new Size(52, 15);
             label11.TabIndex = 21;
@@ -266,7 +265,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(19, 408);
+            label12.Location = new Point(19, 350);
             label12.Name = "label12";
             label12.Size = new Size(20, 15);
             label12.TabIndex = 22;
@@ -276,7 +275,7 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(17, 435);
+            label13.Location = new Point(17, 377);
             label13.Name = "label13";
             label13.Size = new Size(20, 15);
             label13.TabIndex = 23;
@@ -385,7 +384,6 @@
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
-           
         }
 
         #endregion
@@ -421,7 +419,7 @@
         private Button DrawElipse;
         private Label label14;
         private Button button1;
-        
+
 
     }
 }

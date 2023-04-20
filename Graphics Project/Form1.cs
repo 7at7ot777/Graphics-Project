@@ -45,8 +45,8 @@ namespace Graphics_1st_try
                 }
                 else
                     d = d + 4 * x + 6;
-                   drawCircle(xc, yc, x, y);
-            //    drawCircle(xc + (panel1.Width / 2), (panel1.Height / 2) - yc, x + (panel1.Width / 2), (panel1.Height / 2) - y);
+                drawCircle(xc, yc, x, y);
+                //    drawCircle(xc + (panel1.Width / 2), (panel1.Height / 2) - yc, x + (panel1.Width / 2), (panel1.Height / 2) - y);
 
 
             }
@@ -123,6 +123,7 @@ namespace Graphics_1st_try
         public Form1()
         {
             InitializeComponent();
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -132,6 +133,7 @@ namespace Graphics_1st_try
 
         private void button1_Click(object sender, EventArgs e)
         {
+            drawAxis();
             var x0 = Convert.ToInt32(X0.Text);
             var xEnd = Convert.ToInt32(XEnd.Text);
             var y0 = Convert.ToInt32(Y0.Text);
@@ -165,12 +167,13 @@ namespace Graphics_1st_try
 
         private void Bersenham_Click(object sender, EventArgs e)
         {
+            drawAxis();
             var x0 = Convert.ToInt32(X0.Text);
             var xEnd = Convert.ToInt32(XEnd.Text);
             var y0 = Convert.ToInt32(Y0.Text);
             var yEnd = Convert.ToInt32(YEnd.Text);
 
-            lineBres(x0, y0, xEnd,  yEnd);
+            lineBres(x0, y0, xEnd, yEnd);
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -180,6 +183,7 @@ namespace Graphics_1st_try
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            drawAxis();
             var xc = Convert.ToInt32(Xc.Text);
             var yc = Convert.ToInt32(Yc.Text);
             var rad = Convert.ToInt32(radius.Text);
@@ -208,62 +212,81 @@ namespace Graphics_1st_try
             var rx = Convert.ToInt32(RadiusX.Text);
             var ry = Convert.ToInt32(RadiusX.Text);
 
-            BersenhamElipse(xc, yc, rx, ry);
+            EllipseMidPoint(rx, ry, xc, yc);
 
         }
-        private void EllipsPoint(int xc, int yc, int x, int y)
-        {
-            var aBrush = Brushes.Black;
-            var g = panel1.CreateGraphics();
-            g.FillRectangle(aBrush, (xc + x), (yc + y), 1, 1);
-            g.FillRectangle(aBrush, (xc - x), (yc + y), 1, 1);
-            g.FillRectangle(aBrush, (xc + x), (yc - y), 1, 1);
-            g.FillRectangle(aBrush, (xc - x), (yc - y), 1, 1);
-        }
 
-        private void BersenhamElipse(int xc, int yc, int rx, int ry)
+        private void EllipseMidPoint(int xCenter, int yCenter, int rX, int rY)
         {
-            double x = 0;
-            double y = ry;
-            double pk = (ry * ry) - (rx * rx * ry) + (0.25 * rx * rx);
-            EllipsPoint(xc, yc, (int)x, (int)y);
-            Debug.WriteLine("first one");
-            Debug.WriteLine("x=" + x + "\t" + "y=" + y + "\t" + "pk=" + pk);
+            drawAxis();
+            int dx, dy, p1, p2, x, y;
+            x = 0;
+            y = rY;
+            p1 = Convert.ToInt32(rY * rY) - (rX * rX * rY) +
+                    (1 / 4 * rX * rX);
 
-            while ((ry * ry * x) < (rx * rx * y))
+            dx = 2 * rY * rY * x;
+            dy = 2 * rX * rX * y;
+            EllipsePlotPoints(xCenter, yCenter, x, y);
+            //region 1
+            while (dx < dy)
             {
                 x++;
-                if (pk < 0)
+                dx = dx + (2 * rY * rY);
+                if (p1 < 0)
                 {
-                    pk += (2 * ry * ry * x) + (ry * ry);
+
+                    p1 = p1 + dx + (rY * rY);
                 }
+
                 else
                 {
                     y--;
-                    pk += (2 * ry * ry * x) + (ry * ry) - (2 * rx * rx * y);
+                    dy = dy - (2 * rX * rX);
+                    p1 = p1 + dx - dy + (rY * rY);
                 }
-                EllipsPoint(xc, yc, (int)x, (int)y);
-                Debug.WriteLine("x=" + x + "\t" + "y=" + y + "\t" + "pk=" + pk);
+                EllipsePlotPoints(xCenter, yCenter, x, y);
             }
-            Debug.WriteLine("second one");
-            pk = (((ry * ry) * ((x + 0.5) * (x + 0.5))) + ((rx * rx) * ((y - 1) * (y - 1))) - (rx * rx * ry * ry));
-            Debug.WriteLine("x=" + x + "\t" + "y=" + y + "\t" + "pk=" + pk);
-            while (y > 0)
+
+
+
+            //region 2
+            p2 = Convert.ToInt32((rY * rY) * ((x + 1 / 2) * (x + 1 / 2)))
+                + ((rX * rX) * ((y - 1) * (y - 1)))
+                - (rX * rX * rY * rY);
+
+            while (y >= 0)
             {
                 y--;
-                if (pk > 0)
+                dy = dy - (2 * rX * rX);
+                if (p2 > 0)
                 {
-                    pk += (rx * rx) - (2 * rx * rx * y);
+
+                    p2 = p2 + (rX * rX) - dy;
                 }
                 else
                 {
                     x++;
-                    pk += (rx * rx) - (2 * rx * rx * y) + (2 * ry * ry * x);
+                    dx = dx + (2 * rY * rY);
+                    p2 = p2 + dx - dy + (rX * rX);
                 }
-                EllipsPoint(xc, yc, (int)x, (int)y);
-                Debug.WriteLine("x=" + x + "\t" + "y=" + y + "\t" + "pk=" + pk);
+                EllipsePlotPoints(xCenter, yCenter, x, y);
             }
+
         }
+
+        private void EllipsePlotPoints(int xc, int yc, int x, int y)
+        {
+            
+            var aBrush = Brushes.Black;
+            var g = panel1.CreateGraphics();
+            g.FillRectangle(aBrush, (xc + x) + (panel1.Width / 2), (panel1.Height / 2) - (yc + y), 1, 1);
+            g.FillRectangle(aBrush, (xc - x) + (panel1.Width / 2), (panel1.Height / 2) - (yc + y), 1, 1);
+            g.FillRectangle(aBrush, (xc + x) + (panel1.Width / 2), (panel1.Height / 2) - (yc - y), 1, 1);
+            g.FillRectangle(aBrush, (xc - x) + (panel1.Width / 2), (panel1.Height / 2) - (yc - y), 1, 1);
+        }
+
+      
 
         private void drawAxis()
         {
@@ -272,7 +295,7 @@ namespace Graphics_1st_try
             //X axis
             for (int i = 0; i < panel1.Width; i++)
             {
-                g.FillRectangle(aBrush, i , panel1.Height/2 , 1, 1);
+                g.FillRectangle(aBrush, i, panel1.Height / 2, 1, 1);
 
             }
             for (int i = 0; i < panel1.Height; i++)
@@ -288,87 +311,6 @@ namespace Graphics_1st_try
             drawAxis();
         }
 
-
-        /*void BersenhamElipse(int xc , int yc, int rx, int ry)
-        {
-            var draw = panel1.CreateGraphics();
-           
-            var aBrushers = Brushes.Black;
-
-            double dx, dy, d1, d2, x, y;
-                x = 0;
-                y = ry;
-
-                // Initial decision parameter of region 1
-                d1 = (ry * ry) - (rx * rx * ry) +
-                                 (0.25 * rx * rx);
-                dx = 2 * ry * ry * x;
-                dy = 2 * rx * rx * y;
-
-                // For region 1
-                while (dx < dy)
-                {
-
-                // Print points based on 4-way symmetry
-
-                draw.FillRectangle(aBrushers, (int)(x + xc), (int)(y + yc), 2, 2);
-                draw.FillRectangle(aBrushers, (int)(-x + xc), (int)(y + yc), 2, 2);
-                draw.FillRectangle(aBrushers, (int)(x + xc), (int)(-y + yc), 2, 2);
-                draw.FillRectangle(aBrushers, (int)(-x + xc), (int)(-y + yc), 2, 2);
-
-
-
-                // Checking and updating value of
-                // decision parameter based on algorithm
-                if (d1 < 0)
-                    {
-                        x++;
-                        dx = dx + (2 * ry * ry);
-                        d1 = d1 + dx + (ry * ry);
-                    }
-                    else
-                    {
-                        x++;
-                        y--;
-                        dx = dx + (2 * ry * ry);
-                        dy = dy - (2 * rx * rx);
-                        d1 = d1 + dx - dy + (ry * ry);
-                    }
-                }
-
-                // Decision parameter of region 2
-                d2 = ((ry * ry) * ((x + 0.5) * (x + 0.5))) +
-                     ((rx * rx) * ((y - 1) * (y - 1))) -
-                      (rx * rx * ry * ry);
-
-                // Plotting points of region 2
-                while (y >= 0)
-                {
-
-                // Print points based on 4-way symmetry
-                draw.FillRectangle(aBrushers, round(x + xc), round(y + yc), 2, 2);
-                draw.FillRectangle(aBrushers, round (- x + xc), round(y + yc), 2, 2);
-                draw.FillRectangle(aBrushers, round ( x + xc), round(-y + yc), 2, 2);
-                draw.FillRectangle(aBrushers, round ( -x + xc), round(-y + yc), 2, 2);
-
-                    // Checking and updating parameter
-                    // value based on algorithm
-                    if (d2 > 0)
-                    {
-                        y--;
-                        dy = dy - (2 * rx * rx);
-                        d2 = d2 + (rx * rx) - dy;
-                    }
-                    else
-                    {
-                        y--;
-                        x++;
-                        dx = dx + (2 * ry * ry);
-                        dy = dy - (2 * rx * rx);
-                        d2 = d2 + dx - dy + (rx * rx);
-                    }
-                
-            }
-        }*/
+       
     }
 }
