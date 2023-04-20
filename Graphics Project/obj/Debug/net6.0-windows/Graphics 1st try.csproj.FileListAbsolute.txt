@@ -32,3 +32,4 @@ D:\كلية\سنة تالتة الترم التاني\Computer Graphics 1\Graphi
 D:\كلية\سنة تالتة الترم التاني\Computer Graphics 1\Graphics-Project\Graphics Project\obj\Debug\net6.0-windows\Graphics 1st try.pdb
 D:\كلية\سنة تالتة الترم التاني\Computer Graphics 1\Graphics-Project\Graphics Project\obj\Debug\net6.0-windows\Graphics 1st try.genruntimeconfig.cache
 D:\كلية\سنة تالتة الترم التاني\Computer Graphics 1\Graphics-Project\Graphics Project\obj\Debug\net6.0-windows\ref\Graphics 1st try.dll
+D:\كلية\سنة تالتة الترم التاني\Computer Graphics 1\Graphics-Project\Graphics Project\obj\Debug\net6.0-windows\Graphics_1st_try._2DTransformation.resources

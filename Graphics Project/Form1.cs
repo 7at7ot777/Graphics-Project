@@ -21,7 +21,7 @@ namespace Graphics_1st_try
             draw.FillRectangle(aBrushers, xc + y, yc - x, 2, 2);
             draw.FillRectangle(aBrushers, xc - y, yc - x, 2, 2);
         }
-        void circleBres(int xc, int yc, int r)
+       public void circleBres(int xc, int yc, int r)
         {
             int x = 0, y = r;
             int d = 3 - 2 * r;
@@ -93,7 +93,7 @@ namespace Graphics_1st_try
             }
         }
         //DDA Algorithm   
-        int round(float a) { return Convert.ToInt32(a + 0.5); }
+        public static int round(float a) { return Convert.ToInt32(a + 0.5); }
         //int round(double a) { return Convert.ToInt32(a + 0.5); }
         void lineDDA(int x0, int y0, int xEnd, int yEnd)
         {
@@ -123,7 +123,7 @@ namespace Graphics_1st_try
         public Form1()
         {
             InitializeComponent();
-            
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -277,7 +277,7 @@ namespace Graphics_1st_try
 
         private void EllipsePlotPoints(int xc, int yc, int x, int y)
         {
-            
+
             var aBrush = Brushes.Black;
             var g = panel1.CreateGraphics();
             g.FillRectangle(aBrush, (xc + x) + (panel1.Width / 2), (panel1.Height / 2) - (yc + y), 1, 1);
@@ -286,7 +286,7 @@ namespace Graphics_1st_try
             g.FillRectangle(aBrush, (xc - x) + (panel1.Width / 2), (panel1.Height / 2) - (yc - y), 1, 1);
         }
 
-      
+
 
         private void drawAxis()
         {
@@ -311,6 +311,14 @@ namespace Graphics_1st_try
             drawAxis();
         }
 
-       
+        private void button2_Click(object sender, EventArgs e)
+        {
+            _2DTransformation secound_form =new _2DTransformation();
+           
+            secound_form.Show();
+            this.Hide();
+
+           
+        }
     }
 }

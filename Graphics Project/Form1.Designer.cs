@@ -59,6 +59,7 @@
             DrawElipse = new Button();
             label14 = new Label();
             button1 = new Button();
+            button2 = new Button();
             SuspendLayout();
             // 
             // DDA
@@ -114,7 +115,7 @@
             panel1.BackColor = SystemColors.ControlLightLight;
             panel1.Location = new Point(155, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1098, 508);
+            panel1.Size = new Size(1098, 558);
             panel1.TabIndex = 5;
             // 
             // XEnd
@@ -334,13 +335,23 @@
             // 
             // button1
             // 
-            button1.Location = new Point(11, 509);
+            button1.Location = new Point(4, 509);
             button1.Name = "button1";
-            button1.Size = new Size(117, 23);
+            button1.Size = new Size(137, 23);
             button1.TabIndex = 30;
             button1.Text = "Clear Window";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click_2;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(4, 547);
+            button2.Name = "button2";
+            button2.Size = new Size(137, 23);
+            button2.TabIndex = 31;
+            button2.Text = "2D Transformation Window";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // Form1
             // 
@@ -348,6 +359,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1265, 597);
+            Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(label14);
             Controls.Add(DrawElipse);
@@ -419,7 +431,6 @@
         private Button DrawElipse;
         private Label label14;
         private Button button1;
-
-
+        private Button button2;
     }
 }
