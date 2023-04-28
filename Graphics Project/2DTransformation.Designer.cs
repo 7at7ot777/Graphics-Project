@@ -40,18 +40,23 @@
             label3 = new Label();
             P3Y = new TextBox();
             P3X = new TextBox();
-            button1 = new Button();
+            DrawTriangle = new Button();
             button2 = new Button();
             label4 = new Label();
             dy = new TextBox();
             dx = new TextBox();
             label5 = new Label();
             Translation = new Button();
+            XMirror = new Button();
+            label6 = new Label();
+            label7 = new Label();
+            angle = new TextBox();
+            Rotate = new Button();
             SuspendLayout();
             // 
             // Back
             // 
-            Back.Location = new Point(12, 401);
+            Back.Location = new Point(12, 455);
             Back.Name = "Back";
             Back.Size = new Size(136, 23);
             Back.TabIndex = 0;
@@ -69,7 +74,7 @@
             // 
             // DrawAxis
             // 
-            DrawAxis.Location = new Point(12, 372);
+            DrawAxis.Location = new Point(12, 426);
             DrawAxis.Name = "DrawAxis";
             DrawAxis.Size = new Size(136, 23);
             DrawAxis.TabIndex = 2;
@@ -146,19 +151,19 @@
             P3X.Size = new Size(33, 23);
             P3X.TabIndex = 9;
             // 
-            // button1
+            // DrawTriangle
             // 
-            button1.Location = new Point(12, 140);
-            button1.Name = "button1";
-            button1.Size = new Size(136, 23);
-            button1.TabIndex = 12;
-            button1.Text = "Draw Triangle";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click_1;
+            DrawTriangle.Location = new Point(12, 140);
+            DrawTriangle.Name = "DrawTriangle";
+            DrawTriangle.Size = new Size(136, 23);
+            DrawTriangle.TabIndex = 12;
+            DrawTriangle.Text = "Draw Triangle";
+            DrawTriangle.UseVisualStyleBackColor = true;
+            DrawTriangle.Click += button1_Click_1;
             // 
             // button2
             // 
-            button2.Location = new Point(12, 343);
+            button2.Location = new Point(12, 397);
             button2.Name = "button2";
             button2.Size = new Size(136, 23);
             button2.TabIndex = 13;
@@ -169,7 +174,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(9, 188);
+            label4.Location = new Point(9, 224);
             label4.Name = "label4";
             label4.Size = new Size(64, 15);
             label4.TabIndex = 16;
@@ -177,14 +182,14 @@
             // 
             // dy
             // 
-            dy.Location = new Point(129, 184);
+            dy.Location = new Point(129, 220);
             dy.Name = "dy";
             dy.Size = new Size(33, 23);
             dy.TabIndex = 15;
             // 
             // dx
             // 
-            dx.Location = new Point(90, 184);
+            dx.Location = new Point(90, 220);
             dx.Name = "dx";
             dx.Size = new Size(33, 23);
             dx.TabIndex = 14;
@@ -192,7 +197,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(14, 165);
+            label5.Location = new Point(14, 201);
             label5.Name = "label5";
             label5.Size = new Size(132, 15);
             label5.TabIndex = 17;
@@ -200,7 +205,7 @@
             // 
             // Translation
             // 
-            Translation.Location = new Point(14, 213);
+            Translation.Location = new Point(14, 249);
             Translation.Name = "Translation";
             Translation.Size = new Size(136, 23);
             Translation.TabIndex = 18;
@@ -208,18 +213,71 @@
             Translation.UseVisualStyleBackColor = true;
             Translation.Click += Translation_Click;
             // 
+            // XMirror
+            // 
+            XMirror.AccessibleName = "XMirror";
+            XMirror.Location = new Point(12, 169);
+            XMirror.Name = "XMirror";
+            XMirror.Size = new Size(136, 23);
+            XMirror.TabIndex = 19;
+            XMirror.Text = "X Axis Mirror";
+            XMirror.UseVisualStyleBackColor = true;
+            XMirror.Click += XMirror_Click;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(12, 272);
+            label6.Name = "label6";
+            label6.Size = new Size(132, 15);
+            label6.TabIndex = 20;
+            label6.Text = "_________________________";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(12, 299);
+            label7.Name = "label7";
+            label7.Size = new Size(86, 15);
+            label7.TabIndex = 21;
+            label7.Text = "Rotation Angle";
+            // 
+            // angle
+            // 
+            angle.AccessibleName = "angle";
+            angle.Location = new Point(104, 295);
+            angle.Name = "angle";
+            angle.Size = new Size(33, 23);
+            angle.TabIndex = 22;
+            angle.TextChanged += angle_TextChanged;
+            // 
+            // Rotate
+            // 
+            Rotate.Location = new Point(14, 324);
+            Rotate.Name = "Rotate";
+            Rotate.Size = new Size(136, 23);
+            Rotate.TabIndex = 23;
+            Rotate.Text = "Rotate";
+            Rotate.UseVisualStyleBackColor = true;
+            Rotate.Click += Rotate_Click;
+            // 
             // _2DTransformation
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(829, 531);
+            Controls.Add(Rotate);
+            Controls.Add(angle);
+            Controls.Add(label7);
+            Controls.Add(label6);
+            Controls.Add(XMirror);
             Controls.Add(Translation);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(dy);
             Controls.Add(dx);
             Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(DrawTriangle);
             Controls.Add(label3);
             Controls.Add(P3Y);
             Controls.Add(P3X);
@@ -253,12 +311,18 @@
         private Label label3;
         private TextBox P3Y;
         private TextBox P3X;
-        private Button button1;
+        private Button DrawTriangle;
         private Button button2;
         private Label label4;
         private TextBox dy;
         private TextBox dx;
         private Label label5;
         private Button Translation;
+        private Button reflectOnXAixs;
+        private Button XMirror;
+        private Label label6;
+        private Label label7;
+        private TextBox angle;
+        private Button Rotate;
     }
 }

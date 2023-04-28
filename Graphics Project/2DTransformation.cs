@@ -12,7 +12,17 @@ namespace Graphics_1st_try
 {
     public partial class _2DTransformation : Form
     {
-        int POneX, POneY, PTwoX, PTwoY, PThreeX, PThreeY;
+        int POneX { set; get; }
+        int POneY { set; get; }
+        int PTwoX { set; get; }
+        int PTwoY { set; get; }
+        int PThreeX { set; get; }
+        int PThreeY { set; get; }
+        int Dx = 0, Dy = 0;
+        int[,] translationMatrix = {{ 1, 0, 2 }, //2 Will be overridden with Dx and Dy
+                                    {0,1, 2},
+                                     {0,0,1} };
+
 
 
         public _2DTransformation()
@@ -58,32 +68,41 @@ namespace Graphics_1st_try
 
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        public void button1_Click_1(object sender, EventArgs e)
         {
+            DrawAxisFunction();
+
+            var aBrushers = Brushes.Black;
+
+
             //First Point
-            POneX = Convert.ToInt32(P1X.Text);
-            POneY = Convert.ToInt32(P1Y.Text);
+            POneX = Convert.ToInt32(P1X.Text) + (drawPanel.Width / 2);
+            POneY = (drawPanel.Height / 2) - Convert.ToInt32(P1Y.Text);
 
             //Secound Point 
-            PTwoX = Convert.ToInt32(P2X.Text);
-            PTwoY = Convert.ToInt32(P2Y.Text);
+            PTwoX = Convert.ToInt32(P2X.Text) + (drawPanel.Width / 2);
+            PTwoY = (drawPanel.Height / 2) - Convert.ToInt32(P2Y.Text);
 
             //Third Point 
-            PThreeX = Convert.ToInt32(P3X.Text);
-            PThreeY = Convert.ToInt32(P3Y.Text);
+            PThreeX = Convert.ToInt32(P3X.Text) + (drawPanel.Width / 2);
+            PThreeY = (drawPanel.Height / 2) - Convert.ToInt32(P3Y.Text);
 
             //Draw Lines
-            lineDDA(POneX, POneY, PTwoX, PTwoY);
-            lineDDA(PTwoX, PTwoY, PThreeX, PThreeY);
-            lineDDA(PThreeX, PThreeY, POneX, POneY);
+
+            //T = new Transformation(POneX, POneY, PTwoX, PTwoY, PThreeX, PThreeY, drawPanel);
+
+            lineDDA(POneX, POneY, PTwoX, PTwoY, aBrushers);
+            lineDDA(PTwoX, PTwoY, PThreeX, PThreeY, aBrushers);
+            lineDDA(PThreeX, PThreeY, POneX, POneY, aBrushers);
 
 
         }
 
-        void lineDDA(int x0, int y0, int xEnd, int yEnd)
+        void lineDDA(int x0, int y0, int xEnd, int yEnd, Brush brush)
         {
+            Console.WriteLine("dda");
             var draw = drawPanel.CreateGraphics();
-            var aBrushers = Brushes.Black;
+            var aBrushers = brush;
 
 
             int dx = xEnd - x0, dy = yEnd - y0, steps, k;
@@ -96,12 +115,12 @@ namespace Graphics_1st_try
             xIncrement = (float)(dx) / (float)(steps);
             yIncrement = (float)(dy) / (float)(steps);
 
-            draw.FillRectangle(aBrushers, Form1.round(x) + (drawPanel.Width / 2), (drawPanel.Height / 2) - Form1.round(y), 2, 2);
+            draw.FillRectangle(aBrushers, Form1.round(x), Form1.round(y), 2, 2);
             for (k = 0; k < steps; k++)
             {
                 x += xIncrement;
                 y += yIncrement;
-                draw.FillRectangle(aBrushers, Form1.round(x) + (drawPanel.Width / 2), (drawPanel.Height / 2) - Form1.round(y), 2, 2);
+                draw.FillRectangle(aBrushers, Form1.round(x), Form1.round(y), 2, 2);
             }
         }
 
@@ -115,12 +134,88 @@ namespace Graphics_1st_try
 
         private void Translation_Click(object sender, EventArgs e)
         {
-            int Dx = Convert.ToInt32(dx.Text);
-            int Dy = Convert.ToInt32(dy.Text);
+            var aBrushers = Brushes.BlueViolet;
 
-            lineDDA(POneX + Dx, POneY+Dy, PTwoX + Dx, PTwoY+Dy);
-            lineDDA(PTwoX + Dx, PTwoY + Dy, PThreeX + Dx, PThreeY + Dy);
-            lineDDA(PThreeX + Dx, PThreeY + Dy, POneX + Dx, POneY + Dy);
+
+            Dx = Convert.ToInt32(dx.Text);
+            Dy = Convert.ToInt32(dy.Text);
+
+            //  int[] point1 = Transaltion(P1X, P1Y); 
+
+
+
+
+            lineDDA(POneX + Dx, POneY - Dy, PTwoX + Dx, PTwoY - Dy, aBrushers);
+            lineDDA(PTwoX + Dx, PTwoY - Dy, PThreeX + Dx, PThreeY - Dy, aBrushers);
+            lineDDA(PThreeX + Dx, PThreeY - Dy, POneX + Dx, POneY - Dy, aBrushers);
+
+        }
+
+        public int[] Transaltion(int x, int y)
+        {
+            translationMatrix[0, 2] = Dx;
+            translationMatrix[1, 2] = Dy;
+
+            int[] result = new int[6];
+            int[] points = { x, y, 1 };
+
+            for (int i = 0; i < 3; i++)
+            {
+                for (int k = 0; k < 0; k++)
+                {
+                    result[i] = translationMatrix[i, k] * points[k];
+                }
+            }
+            return result;
+        }
+
+        private void XMirror_Click(object sender, EventArgs e)
+        {
+            var aBrushers = Brushes.Pink;
+
+            int p1x = POneX / (-1);
+            int p1y = POneY / (-1);
+
+
+            int p2x = PTwoX / (-1);
+            int p2y = PTwoY / (-1);
+
+            int p3x = PThreeX / (-1);
+            int p3y = PThreeY / (-1);
+
+            lineDDA(p1x, p1y, p2x, p2y, aBrushers);
+            lineDDA(p2x, p2y, p3x, p3y, aBrushers);
+            lineDDA(p3x, p3y, p1x, p1y, aBrushers);
+
+            Console.WriteLine("lololo");
+        }
+
+        private void Rotate_Click(object sender, EventArgs e)
+        {
+            var aBrushers = Brushes.Pink;
+
+            int RotationAngle = Convert.ToInt32(angle.Text);
+
+            int p1x = (int)(POneX * Math.Cos(RotationAngle) - POneY * Math.Sin(RotationAngle));
+            int p1y =(int)( POneX * Math.Sin(RotationAngle) + POneY * Math.Cos(RotationAngle));
+
+
+            int p2x = (int)(PTwoX * Math.Cos(RotationAngle) - PTwoY * Math.Sin(RotationAngle));
+            int p2y = (int)(PTwoX * Math.Sin(RotationAngle) + PTwoX * Math.Cos(RotationAngle));
+
+            int p3x = (int)(PThreeX * Math.Cos(RotationAngle) - PThreeY * Math.Sin(RotationAngle));
+            int p3y = (int)(PThreeX * Math.Sin(RotationAngle) + PThreeX * Math.Cos(RotationAngle));
+
+            lineDDA(p1x, p1y, p2x, p2y, aBrushers);
+            lineDDA(p2x, p2y, p3x, p3y, aBrushers);
+            lineDDA(p3x, p3y, p1x, p1y, aBrushers);
+
+
+
+        }
+
+        private void angle_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }
