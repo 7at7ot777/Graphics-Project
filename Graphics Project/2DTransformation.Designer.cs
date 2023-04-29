@@ -47,16 +47,18 @@
             dx = new TextBox();
             label5 = new Label();
             Translation = new Button();
-            XMirror = new Button();
+            OriginMirror = new Button();
             label6 = new Label();
             label7 = new Label();
             angle = new TextBox();
             Rotate = new Button();
+            button1 = new Button();
+            YMirror = new Button();
             SuspendLayout();
             // 
             // Back
             // 
-            Back.Location = new Point(12, 455);
+            Back.Location = new Point(12, 492);
             Back.Name = "Back";
             Back.Size = new Size(136, 23);
             Back.TabIndex = 0;
@@ -74,7 +76,7 @@
             // 
             // DrawAxis
             // 
-            DrawAxis.Location = new Point(12, 426);
+            DrawAxis.Location = new Point(12, 463);
             DrawAxis.Name = "DrawAxis";
             DrawAxis.Size = new Size(136, 23);
             DrawAxis.TabIndex = 2;
@@ -163,7 +165,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(12, 397);
+            button2.Location = new Point(12, 434);
             button2.Name = "button2";
             button2.Size = new Size(136, 23);
             button2.TabIndex = 13;
@@ -174,7 +176,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(9, 224);
+            label4.Location = new Point(9, 291);
             label4.Name = "label4";
             label4.Size = new Size(64, 15);
             label4.TabIndex = 16;
@@ -182,14 +184,14 @@
             // 
             // dy
             // 
-            dy.Location = new Point(129, 220);
+            dy.Location = new Point(129, 287);
             dy.Name = "dy";
             dy.Size = new Size(33, 23);
             dy.TabIndex = 15;
             // 
             // dx
             // 
-            dx.Location = new Point(90, 220);
+            dx.Location = new Point(90, 287);
             dx.Name = "dx";
             dx.Size = new Size(33, 23);
             dx.TabIndex = 14;
@@ -197,7 +199,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(14, 201);
+            label5.Location = new Point(14, 268);
             label5.Name = "label5";
             label5.Size = new Size(132, 15);
             label5.TabIndex = 17;
@@ -205,7 +207,7 @@
             // 
             // Translation
             // 
-            Translation.Location = new Point(14, 249);
+            Translation.Location = new Point(14, 316);
             Translation.Name = "Translation";
             Translation.Size = new Size(136, 23);
             Translation.TabIndex = 18;
@@ -213,21 +215,21 @@
             Translation.UseVisualStyleBackColor = true;
             Translation.Click += Translation_Click;
             // 
-            // XMirror
+            // OriginMirror
             // 
-            XMirror.AccessibleName = "XMirror";
-            XMirror.Location = new Point(12, 169);
-            XMirror.Name = "XMirror";
-            XMirror.Size = new Size(136, 23);
-            XMirror.TabIndex = 19;
-            XMirror.Text = "X Axis Mirror";
-            XMirror.UseVisualStyleBackColor = true;
-            XMirror.Click += XMirror_Click;
+            OriginMirror.AccessibleName = "OriginMirror";
+            OriginMirror.Location = new Point(12, 169);
+            OriginMirror.Name = "OriginMirror";
+            OriginMirror.Size = new Size(136, 23);
+            OriginMirror.TabIndex = 19;
+            OriginMirror.Text = "Origin Mirror";
+            OriginMirror.UseVisualStyleBackColor = true;
+            OriginMirror.Click += XMirror_Click;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(12, 272);
+            label6.Location = new Point(12, 339);
             label6.Name = "label6";
             label6.Size = new Size(132, 15);
             label6.TabIndex = 20;
@@ -236,7 +238,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(12, 299);
+            label7.Location = new Point(12, 366);
             label7.Name = "label7";
             label7.Size = new Size(86, 15);
             label7.TabIndex = 21;
@@ -245,7 +247,7 @@
             // angle
             // 
             angle.AccessibleName = "angle";
-            angle.Location = new Point(104, 295);
+            angle.Location = new Point(104, 362);
             angle.Name = "angle";
             angle.Size = new Size(33, 23);
             angle.TabIndex = 22;
@@ -253,7 +255,7 @@
             // 
             // Rotate
             // 
-            Rotate.Location = new Point(14, 324);
+            Rotate.Location = new Point(14, 391);
             Rotate.Name = "Rotate";
             Rotate.Size = new Size(136, 23);
             Rotate.TabIndex = 23;
@@ -261,16 +263,40 @@
             Rotate.UseVisualStyleBackColor = true;
             Rotate.Click += Rotate_Click;
             // 
+            // button1
+            // 
+            button1.AccessibleName = "XMirror";
+            button1.Location = new Point(14, 198);
+            button1.Name = "button1";
+            button1.Size = new Size(136, 23);
+            button1.TabIndex = 24;
+            button1.Text = "X Axis Mirror";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_2;
+            // 
+            // YMirror
+            // 
+            YMirror.AccessibleName = "YMirror";
+            YMirror.Location = new Point(14, 227);
+            YMirror.Name = "YMirror";
+            YMirror.Size = new Size(136, 23);
+            YMirror.TabIndex = 25;
+            YMirror.Text = "Y Axis Mirror";
+            YMirror.UseVisualStyleBackColor = true;
+            YMirror.Click += YMirror_Click;
+            // 
             // _2DTransformation
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(829, 531);
+            Controls.Add(YMirror);
+            Controls.Add(button1);
             Controls.Add(Rotate);
             Controls.Add(angle);
             Controls.Add(label7);
             Controls.Add(label6);
-            Controls.Add(XMirror);
+            Controls.Add(OriginMirror);
             Controls.Add(Translation);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -319,10 +345,12 @@
         private Label label5;
         private Button Translation;
         private Button reflectOnXAixs;
-        private Button XMirror;
+        private Button OriginMirror;
         private Label label6;
         private Label label7;
         private TextBox angle;
         private Button Rotate;
+        private Button button1;
+        private Button YMirror;
     }
 }

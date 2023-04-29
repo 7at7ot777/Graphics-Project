@@ -70,6 +70,8 @@ namespace Graphics_1st_try
 
         public void button1_Click_1(object sender, EventArgs e)
         {
+            //DRAW TRIANGLE     
+
             DrawAxisFunction();
 
             var aBrushers = Brushes.Black;
@@ -94,6 +96,18 @@ namespace Graphics_1st_try
             lineDDA(POneX, POneY, PTwoX, PTwoY, aBrushers);
             lineDDA(PTwoX, PTwoY, PThreeX, PThreeY, aBrushers);
             lineDDA(PThreeX, PThreeY, POneX, POneY, aBrushers);
+
+            //First Point
+            POneX = Convert.ToInt32(P1X.Text);
+            POneY = Convert.ToInt32(P1Y.Text);
+
+            //Secound Point 
+            PTwoX = Convert.ToInt32(P2X.Text);
+            PTwoY = Convert.ToInt32(P2Y.Text);
+
+            //Third Point 
+            PThreeX = Convert.ToInt32(P3X.Text);
+            PThreeY = Convert.ToInt32(P3Y.Text);
 
 
         }
@@ -145,43 +159,29 @@ namespace Graphics_1st_try
 
 
 
-            lineDDA(POneX + Dx, POneY - Dy, PTwoX + Dx, PTwoY - Dy, aBrushers);
-            lineDDA(PTwoX + Dx, PTwoY - Dy, PThreeX + Dx, PThreeY - Dy, aBrushers);
-            lineDDA(PThreeX + Dx, PThreeY - Dy, POneX + Dx, POneY - Dy, aBrushers);
+            lineDDA(POneX + Dx + (drawPanel.Width) / 2, (drawPanel.Height / 2) - POneY - Dy, PTwoX + Dx + (drawPanel.Width) / 2, (drawPanel.Height / 2) - PTwoY - Dy, aBrushers);
+            lineDDA(PTwoX + Dx + (drawPanel.Width) / 2, (drawPanel.Height / 2) - PTwoY - Dy, PThreeX + Dx + (drawPanel.Width) / 2, (drawPanel.Height / 2) - PThreeY - Dy, aBrushers);
+            lineDDA(PThreeX + Dx + (drawPanel.Width) / 2, (drawPanel.Height / 2) - PThreeY - Dy, POneX + Dx + (drawPanel.Width) / 2, (drawPanel.Height / 2) - POneY - Dy, aBrushers);
 
         }
 
-        public int[] Transaltion(int x, int y)
-        {
-            translationMatrix[0, 2] = Dx;
-            translationMatrix[1, 2] = Dy;
 
-            int[] result = new int[6];
-            int[] points = { x, y, 1 };
-
-            for (int i = 0; i < 3; i++)
-            {
-                for (int k = 0; k < 0; k++)
-                {
-                    result[i] = translationMatrix[i, k] * points[k];
-                }
-            }
-            return result;
-        }
 
         private void XMirror_Click(object sender, EventArgs e)
         {
-            var aBrushers = Brushes.Pink;
+            var aBrushers = Brushes.Purple;
 
-            int p1x = POneX / (-1);
-            int p1y = POneY / (-1);
+            int p1x = POneX * (-1) + (drawPanel.Width) / 2;
+            int p1y = (drawPanel.Height / 2) - POneY * (-1);
 
 
-            int p2x = PTwoX / (-1);
-            int p2y = PTwoY / (-1);
+            int p2x = PTwoX * (-1) + (drawPanel.Width) / 2;
+            int p2y = (drawPanel.Height / 2) - PTwoY * (-1);
 
-            int p3x = PThreeX / (-1);
-            int p3y = PThreeY / (-1);
+            int p3x = PThreeX * (-1) + (drawPanel.Width) / 2;
+            int p3y = (drawPanel.Height / 2) - PThreeY * (-1);
+
+
 
             lineDDA(p1x, p1y, p2x, p2y, aBrushers);
             lineDDA(p2x, p2y, p3x, p3y, aBrushers);
@@ -192,19 +192,20 @@ namespace Graphics_1st_try
 
         private void Rotate_Click(object sender, EventArgs e)
         {
+            //deg/180 = rad/pi
             var aBrushers = Brushes.Pink;
 
-            int RotationAngle = Convert.ToInt32(angle.Text);
+            double RotationAngle = Convert.ToInt32(angle.Text) * Math.PI / 180;
 
-            int p1x = (int)(POneX * Math.Cos(RotationAngle) - POneY * Math.Sin(RotationAngle));
-            int p1y =(int)( POneX * Math.Sin(RotationAngle) + POneY * Math.Cos(RotationAngle));
+            int p1x = (int)(POneX * Math.Cos(RotationAngle) - POneY * Math.Sin(RotationAngle)) + (drawPanel.Width) / 2;
+            int p1y = (drawPanel.Height / 2) - (int)(POneX * Math.Sin(RotationAngle) + POneY * Math.Cos(RotationAngle));
 
 
-            int p2x = (int)(PTwoX * Math.Cos(RotationAngle) - PTwoY * Math.Sin(RotationAngle));
-            int p2y = (int)(PTwoX * Math.Sin(RotationAngle) + PTwoX * Math.Cos(RotationAngle));
+            int p2x = (int)(PTwoX * Math.Cos(RotationAngle) - PTwoY * Math.Sin(RotationAngle)) + (drawPanel.Width) / 2;
+            int p2y = (drawPanel.Height / 2) - (int)(PTwoX * Math.Sin(RotationAngle) + PTwoY * Math.Cos(RotationAngle));
 
-            int p3x = (int)(PThreeX * Math.Cos(RotationAngle) - PThreeY * Math.Sin(RotationAngle));
-            int p3y = (int)(PThreeX * Math.Sin(RotationAngle) + PThreeX * Math.Cos(RotationAngle));
+            int p3x = (int)(PThreeX * Math.Cos(RotationAngle) - PThreeY * Math.Sin(RotationAngle)) + (drawPanel.Width) / 2; ;
+            int p3y = (drawPanel.Height / 2) - (int)(PThreeX * Math.Sin(RotationAngle) + PThreeY * Math.Cos(RotationAngle));
 
             lineDDA(p1x, p1y, p2x, p2y, aBrushers);
             lineDDA(p2x, p2y, p3x, p3y, aBrushers);
@@ -217,6 +218,48 @@ namespace Graphics_1st_try
         private void angle_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            var aBrushers = Brushes.Purple;
+
+            int p1x = POneX + (drawPanel.Width) / 2;
+            int p1y = (drawPanel.Height / 2) - POneY * (-1);
+
+
+            int p2x = PTwoX + (drawPanel.Width) / 2;
+            int p2y = (drawPanel.Height / 2) - PTwoY * (-1);
+
+            int p3x = PThreeX + (drawPanel.Width) / 2;
+            int p3y = (drawPanel.Height / 2) - PThreeY * (-1);
+
+
+
+            lineDDA(p1x, p1y, p2x, p2y, aBrushers);
+            lineDDA(p2x, p2y, p3x, p3y, aBrushers);
+            lineDDA(p3x, p3y, p1x, p1y, aBrushers);
+        }
+
+        private void YMirror_Click(object sender, EventArgs e)
+        {
+            var aBrushers = Brushes.Purple;
+
+            int p1x = POneX * (-1) + (drawPanel.Width) / 2;
+            int p1y = (drawPanel.Height / 2) - POneY;
+
+
+            int p2x = PTwoX * (-1) + (drawPanel.Width) / 2;
+            int p2y = (drawPanel.Height / 2) - PTwoY;
+
+            int p3x = PThreeX * (-1) + (drawPanel.Width) / 2;
+            int p3y = (drawPanel.Height / 2) - PThreeY ;
+
+
+
+            lineDDA(p1x, p1y, p2x, p2y, aBrushers);
+            lineDDA(p2x, p2y, p3x, p3y, aBrushers);
+            lineDDA(p3x, p3y, p1x, p1y, aBrushers);
         }
     }
 }
