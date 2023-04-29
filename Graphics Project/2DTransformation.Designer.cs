@@ -54,11 +54,19 @@
             Rotate = new Button();
             button1 = new Button();
             YMirror = new Button();
+            label8 = new Label();
+            multiplyY = new TextBox();
+            multiplyX = new TextBox();
+            Scale = new Button();
+            Sx = new TextBox();
+            button3 = new Button();
+            ShearY = new Button();
+            Sy = new TextBox();
             SuspendLayout();
             // 
             // Back
             // 
-            Back.Location = new Point(12, 492);
+            Back.Location = new Point(805, 391);
             Back.Name = "Back";
             Back.Size = new Size(136, 23);
             Back.TabIndex = 0;
@@ -76,7 +84,7 @@
             // 
             // DrawAxis
             // 
-            DrawAxis.Location = new Point(12, 463);
+            DrawAxis.Location = new Point(805, 362);
             DrawAxis.Name = "DrawAxis";
             DrawAxis.Size = new Size(136, 23);
             DrawAxis.TabIndex = 2;
@@ -165,7 +173,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(12, 434);
+            button2.Location = new Point(805, 333);
             button2.Name = "button2";
             button2.Size = new Size(136, 23);
             button2.TabIndex = 13;
@@ -285,11 +293,93 @@
             YMirror.UseVisualStyleBackColor = true;
             YMirror.Click += YMirror_Click;
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(798, 34);
+            label8.Name = "label8";
+            label8.Size = new Size(45, 15);
+            label8.TabIndex = 28;
+            label8.Text = "Scaling";
+            // 
+            // multiplyY
+            // 
+            multiplyY.AccessibleName = "multiplyY";
+            multiplyY.Location = new Point(901, 29);
+            multiplyY.Name = "multiplyY";
+            multiplyY.Size = new Size(33, 23);
+            multiplyY.TabIndex = 27;
+            // 
+            // multiplyX
+            // 
+            multiplyX.AccessibleName = "multiplyX";
+            multiplyX.Location = new Point(850, 29);
+            multiplyX.Name = "multiplyX";
+            multiplyX.Size = new Size(33, 23);
+            multiplyX.TabIndex = 26;
+            // 
+            // Scale
+            // 
+            Scale.AccessibleName = "Scale";
+            Scale.Location = new Point(798, 59);
+            Scale.Name = "Scale";
+            Scale.Size = new Size(136, 23);
+            Scale.TabIndex = 29;
+            Scale.Text = "Scale";
+            Scale.UseVisualStyleBackColor = true;
+            Scale.Click += Scale_Click;
+            // 
+            // Sx
+            // 
+            Sx.AccessibleName = "Sx";
+            Sx.Location = new Point(798, 88);
+            Sx.Name = "Sx";
+            Sx.Size = new Size(33, 23);
+            Sx.TabIndex = 30;
+            // 
+            // button3
+            // 
+            button3.AccessibleName = "Scale";
+            button3.Location = new Point(850, 88);
+            button3.Name = "button3";
+            button3.Size = new Size(84, 23);
+            button3.TabIndex = 31;
+            button3.Text = "Shear X";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // ShearY
+            // 
+            ShearY.AccessibleName = "ShearY";
+            ShearY.Location = new Point(850, 117);
+            ShearY.Name = "ShearY";
+            ShearY.Size = new Size(84, 23);
+            ShearY.TabIndex = 33;
+            ShearY.Text = "Shear Y";
+            ShearY.UseVisualStyleBackColor = true;
+            ShearY.Click += ShearY_Click;
+            // 
+            // Sy
+            // 
+            Sy.AccessibleName = "Sy";
+            Sy.Location = new Point(798, 117);
+            Sy.Name = "Sy";
+            Sy.Size = new Size(33, 23);
+            Sy.TabIndex = 32;
+            // 
             // _2DTransformation
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(829, 531);
+            ClientSize = new Size(963, 453);
+            Controls.Add(ShearY);
+            Controls.Add(Sy);
+            Controls.Add(button3);
+            Controls.Add(Sx);
+            Controls.Add(Scale);
+            Controls.Add(label8);
+            Controls.Add(multiplyY);
+            Controls.Add(multiplyX);
             Controls.Add(YMirror);
             Controls.Add(button1);
             Controls.Add(Rotate);
@@ -352,5 +442,13 @@
         private Button Rotate;
         private Button button1;
         private Button YMirror;
+        private Label label8;
+        private TextBox multiplyY;
+        private TextBox multiplyX;
+        private Button Scale;
+        private TextBox Sx;
+        private Button button3;
+        private Button ShearY;
+        private TextBox Sy;
     }
 }

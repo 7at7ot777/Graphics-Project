@@ -253,7 +253,82 @@ namespace Graphics_1st_try
             int p2y = (drawPanel.Height / 2) - PTwoY;
 
             int p3x = PThreeX * (-1) + (drawPanel.Width) / 2;
-            int p3y = (drawPanel.Height / 2) - PThreeY ;
+            int p3y = (drawPanel.Height / 2) - PThreeY;
+
+
+
+            lineDDA(p1x, p1y, p2x, p2y, aBrushers);
+            lineDDA(p2x, p2y, p3x, p3y, aBrushers);
+            lineDDA(p3x, p3y, p1x, p1y, aBrushers);
+        }
+
+        private void Scale_Click(object sender, EventArgs e)
+        {
+
+            var aBrushers = Brushes.RoyalBlue;
+
+            int multX = Convert.ToInt32(multiplyX.Text);
+            int multY = Convert.ToInt32(multiplyY.Text);
+
+            int p1x = POneX * multX + (drawPanel.Width) / 2;
+            int p1y = (drawPanel.Height / 2) - POneY * multY;
+
+
+            int p2x = PTwoX * multX + (drawPanel.Width) / 2;
+            int p2y = (drawPanel.Height / 2) - PTwoY * multY;
+
+            int p3x = PThreeX * multX + (drawPanel.Width) / 2;
+            int p3y = (drawPanel.Height / 2) - PThreeY * multY;
+
+
+
+            lineDDA(p1x, p1y, p2x, p2y, aBrushers);
+            lineDDA(p2x, p2y, p3x, p3y, aBrushers);
+            lineDDA(p3x, p3y, p1x, p1y, aBrushers);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var aBrushers = Brushes.Brown;
+
+            int sx = Convert.ToInt32(Sx.Text);
+            int p1x = POneX + sx * POneY;
+            int p2x = PTwoX + sx * PTwoY;
+            int p3x = PThreeX + sx * PThreeY;
+
+            p1x = p1x + (drawPanel.Width) / 2;
+            int p1y = (drawPanel.Height / 2) - POneY;
+
+
+            p2x = p2x + (drawPanel.Width) / 2;
+            int p2y = (drawPanel.Height / 2) - PTwoY;
+
+            p3x = p3x + (drawPanel.Width) / 2;
+            int p3y = (drawPanel.Height / 2) - PThreeY;
+
+
+
+
+
+            lineDDA(p1x, p1y, p2x, p2y, aBrushers);
+            lineDDA(p2x, p2y, p3x, p3y, aBrushers);
+            lineDDA(p3x, p3y, p1x, p1y, aBrushers);
+        }
+
+        private void ShearY_Click(object sender, EventArgs e)
+        {
+            var aBrushers = Brushes.Brown;
+
+            int sy = Convert.ToInt32(Sy.Text);
+
+            int p1x = POneX + (drawPanel.Width) / 2;
+            int p2x = PTwoX + (drawPanel.Width) / 2;
+            int p3x = PThreeX + (drawPanel.Width) / 2;
+
+            int p1y = (drawPanel.Height / 2) - POneX * sy + POneY;
+            int p2y = (drawPanel.Height / 2) - PTwoX * sy + PTwoY;
+            int p3y = (drawPanel.Height / 2) - PThreeX * sy + PThreeY;
+
 
 
 
