@@ -12,7 +12,16 @@ namespace Graphics_1st_try
             var draw = panel1.CreateGraphics();
             var aBrushers = Brushes.Green;
             //xc yc is the origin
-            draw.FillRectangle(aBrushers, xc + x, yc + y, 2, 2);
+            dataGridView1.Rows.Add(xc + x- panel1.Width/2,panel1.Height/2- yc + y, "Cirlce");
+            dataGridView1.Rows.Add(xc - x- panel1.Width/2, panel1.Height / 2 - yc + y, "Cirlce");
+            dataGridView1.Rows.Add(xc + x- panel1.Width/2, panel1.Height / 2 - yc - y, "Cirlce");
+            dataGridView1.Rows.Add(xc - x- panel1.Width/2,panel1.Height/2- yc - y, "Cirlce");
+            dataGridView1.Rows.Add(xc + x- panel1.Width/2, panel1.Height / 2 - yc + y, "Cirlce");
+            dataGridView1.Rows.Add(xc - x- panel1.Width/2, panel1.Height / 2 - yc + y, "Cirlce");
+            dataGridView1.Rows.Add(xc + x- panel1.Width/2, panel1.Height / 2 - yc - y, "Cirlce");
+            dataGridView1.Rows.Add(xc - x- panel1.Width/2, panel1.Height / 2 - yc - y, "Cirlce");
+
+            draw.FillRectangle(aBrushers, xc + x, yc + y, 2, 2);//1
             draw.FillRectangle(aBrushers, xc - x, yc + y, 2, 2);
             draw.FillRectangle(aBrushers, xc + x, yc - y, 2, 2);
             draw.FillRectangle(aBrushers, xc - x, yc - y, 2, 2);
@@ -21,7 +30,7 @@ namespace Graphics_1st_try
             draw.FillRectangle(aBrushers, xc + y, yc - x, 2, 2);
             draw.FillRectangle(aBrushers, xc - y, yc - x, 2, 2);
         }
-       public void circleBres(int xc, int yc, int r)
+        public void circleBres(int xc, int yc, int r)
         {
             int x = 0, y = r;
             int d = 3 - 2 * r;
@@ -77,6 +86,8 @@ namespace Graphics_1st_try
             {
                 x = x0; y = y0;
             }
+            dataGridView1.Rows.Add(round(x), round(y), "Bersenham");
+
             draw.FillRectangle(aBrushers, round(x) + (panel1.Width / 2), (panel1.Height / 2) - round(y), 4, 4);
 
             while (x < xEnd)
@@ -89,6 +100,8 @@ namespace Graphics_1st_try
                     y++;
                     p += twoDyMinusDx;
                 }
+                dataGridView1.Rows.Add(round(x), round(y), "Bersenham");
+
                 draw.FillRectangle(aBrushers, round(x) + (panel1.Width / 2), (panel1.Height / 2) - round(y), 4, 4);
             }
         }
@@ -111,11 +124,14 @@ namespace Graphics_1st_try
             xIncrement = (float)(dx) / (float)(steps);
             yIncrement = (float)(dy) / (float)(steps);
 
+            dataGridView1.Rows.Add(round(x), round(y), "DDA");
             draw.FillRectangle(aBrushers, round(x) + (panel1.Width / 2), (panel1.Height / 2) - round(y), 2, 2);
             for (k = 0; k < steps; k++)
             {
                 x += xIncrement;
                 y += yIncrement;
+                dataGridView1.Rows.Add(round(x) , round(y), "DDA");
+
                 draw.FillRectangle(aBrushers, round(x) + (panel1.Width / 2), (panel1.Height / 2) - round(y), 2, 2);
             }
         }
@@ -280,6 +296,11 @@ namespace Graphics_1st_try
 
             var aBrush = Brushes.Black;
             var g = panel1.CreateGraphics();
+            dataGridView1.Rows.Add((xc + x), (yc + y), "Elipse");
+            dataGridView1.Rows.Add((xc - x), (yc + y), "Elipse");
+            dataGridView1.Rows.Add((xc + x), (yc - y), "Elipse");
+            dataGridView1.Rows.Add((xc - x), (yc - y), "Elipse");
+
             g.FillRectangle(aBrush, (xc + x) + (panel1.Width / 2), (panel1.Height / 2) - (yc + y), 1, 1);
             g.FillRectangle(aBrush, (xc - x) + (panel1.Width / 2), (panel1.Height / 2) - (yc + y), 1, 1);
             g.FillRectangle(aBrush, (xc + x) + (panel1.Width / 2), (panel1.Height / 2) - (yc - y), 1, 1);
@@ -313,12 +334,17 @@ namespace Graphics_1st_try
 
         private void button2_Click(object sender, EventArgs e)
         {
-            _2DTransformation secound_form =new _2DTransformation();
-           
+            _2DTransformation secound_form = new _2DTransformation();
+
             secound_form.Show();
             this.Hide();
 
-           
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

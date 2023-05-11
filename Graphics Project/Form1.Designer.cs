@@ -60,6 +60,11 @@
             label14 = new Label();
             button1 = new Button();
             button2 = new Button();
+            dataGridView1 = new DataGridView();
+            PointX = new DataGridViewTextBoxColumn();
+            PointY = new DataGridViewTextBoxColumn();
+            Shape = new DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // DDA
@@ -115,7 +120,7 @@
             panel1.BackColor = SystemColors.ControlLightLight;
             panel1.Location = new Point(155, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1098, 558);
+            panel1.Size = new Size(584, 573);
             panel1.TabIndex = 5;
             // 
             // XEnd
@@ -353,12 +358,39 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { PointX, PointY, Shape });
+            dataGridView1.Location = new Point(756, 12);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowTemplate.Height = 25;
+            dataGridView1.Size = new Size(344, 573);
+            dataGridView1.TabIndex = 35;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // PointX
+            // 
+            PointX.HeaderText = "Point X";
+            PointX.Name = "PointX";
+            // 
+            // PointY
+            // 
+            PointY.HeaderText = "Point Y";
+            PointY.Name = "PointY";
+            // 
+            // Shape
+            // 
+            Shape.HeaderText = "Shape";
+            Shape.Name = "Shape";
+            // 
             // Form1
             // 
             AccessibleName = "Draw DDA";
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1265, 597);
+            ClientSize = new Size(1115, 598);
+            Controls.Add(dataGridView1);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(label14);
@@ -394,6 +426,7 @@
             Name = "Form1";
             Text = "Draw";
             Load += Form1_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -432,5 +465,9 @@
         private Label label14;
         private Button button1;
         private Button button2;
+        private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn PointX;
+        private DataGridViewTextBoxColumn PointY;
+        private DataGridViewTextBoxColumn Shape;
     }
 }

@@ -66,7 +66,7 @@
             // 
             // Back
             // 
-            Back.Location = new Point(805, 391);
+            Back.Location = new Point(792, 391);
             Back.Name = "Back";
             Back.Size = new Size(136, 23);
             Back.TabIndex = 0;
@@ -77,14 +77,14 @@
             // drawPanel
             // 
             drawPanel.BackColor = SystemColors.GradientInactiveCaption;
-            drawPanel.Location = new Point(168, 12);
+            drawPanel.Location = new Point(166, 12);
             drawPanel.Name = "drawPanel";
             drawPanel.Size = new Size(611, 426);
             drawPanel.TabIndex = 1;
             // 
             // DrawAxis
             // 
-            DrawAxis.Location = new Point(805, 362);
+            DrawAxis.Location = new Point(792, 362);
             DrawAxis.Name = "DrawAxis";
             DrawAxis.Size = new Size(136, 23);
             DrawAxis.TabIndex = 2;
@@ -173,7 +173,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(805, 333);
+            button2.Location = new Point(792, 333);
             button2.Name = "button2";
             button2.Size = new Size(136, 23);
             button2.TabIndex = 13;
@@ -296,7 +296,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(798, 34);
+            label8.Location = new Point(785, 34);
             label8.Name = "label8";
             label8.Size = new Size(45, 15);
             label8.TabIndex = 28;
@@ -305,7 +305,7 @@
             // multiplyY
             // 
             multiplyY.AccessibleName = "multiplyY";
-            multiplyY.Location = new Point(901, 29);
+            multiplyY.Location = new Point(888, 29);
             multiplyY.Name = "multiplyY";
             multiplyY.Size = new Size(33, 23);
             multiplyY.TabIndex = 27;
@@ -313,7 +313,7 @@
             // multiplyX
             // 
             multiplyX.AccessibleName = "multiplyX";
-            multiplyX.Location = new Point(850, 29);
+            multiplyX.Location = new Point(837, 29);
             multiplyX.Name = "multiplyX";
             multiplyX.Size = new Size(33, 23);
             multiplyX.TabIndex = 26;
@@ -321,7 +321,7 @@
             // Scale
             // 
             Scale.AccessibleName = "Scale";
-            Scale.Location = new Point(798, 59);
+            Scale.Location = new Point(785, 59);
             Scale.Name = "Scale";
             Scale.Size = new Size(136, 23);
             Scale.TabIndex = 29;
@@ -332,7 +332,7 @@
             // Sx
             // 
             Sx.AccessibleName = "Sx";
-            Sx.Location = new Point(798, 88);
+            Sx.Location = new Point(785, 88);
             Sx.Name = "Sx";
             Sx.Size = new Size(33, 23);
             Sx.TabIndex = 30;
@@ -340,7 +340,7 @@
             // button3
             // 
             button3.AccessibleName = "Scale";
-            button3.Location = new Point(850, 88);
+            button3.Location = new Point(837, 88);
             button3.Name = "button3";
             button3.Size = new Size(84, 23);
             button3.TabIndex = 31;
@@ -351,7 +351,7 @@
             // ShearY
             // 
             ShearY.AccessibleName = "ShearY";
-            ShearY.Location = new Point(850, 117);
+            ShearY.Location = new Point(837, 117);
             ShearY.Name = "ShearY";
             ShearY.Size = new Size(84, 23);
             ShearY.TabIndex = 33;
@@ -362,7 +362,7 @@
             // Sy
             // 
             Sy.AccessibleName = "Sy";
-            Sy.Location = new Point(798, 117);
+            Sy.Location = new Point(785, 117);
             Sy.Name = "Sy";
             Sy.Size = new Size(33, 23);
             Sy.TabIndex = 32;
@@ -371,7 +371,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(963, 453);
+            ClientSize = new Size(950, 453);
             Controls.Add(ShearY);
             Controls.Add(Sy);
             Controls.Add(button3);

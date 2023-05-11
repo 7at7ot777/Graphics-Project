@@ -336,5 +336,10 @@ namespace Graphics_1st_try
             lineDDA(p2x, p2y, p3x, p3y, aBrushers);
             lineDDA(p3x, p3y, p1x, p1y, aBrushers);
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
